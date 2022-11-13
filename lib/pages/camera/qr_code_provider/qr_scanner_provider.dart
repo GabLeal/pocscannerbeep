@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pocscanner/qr_code_provider/scan_qr_code.dart';
+import 'package:pocscanner/pages/camera/qr_code_provider/scan_qr_code.dart';
 
 class QrScannerProvider {
   /// return url referring to the scanned QRcode

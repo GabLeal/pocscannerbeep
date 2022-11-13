@@ -4,8 +4,13 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:pocscanner/qr_code_provider/qr_scanner_provider.dart';
+import 'package:pocscanner/pages/finish_route/finish_route_view.dart';
+import 'package:pocscanner/pages/help/help_view.dart';
+import 'package:pocscanner/pages/home/home_view.dart';
+import 'package:pocscanner/pages/camera/qr_code_provider/qr_scanner_provider.dart';
 import 'package:pocscanner/voice/voice_state.dart';
+
+import 'pages/app_configuration/app_configuration_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +26,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      routes: {
+        '/': (context) => const HomeView(),
+        '/help': (context) => const HelpView(),
+        '/finishroute': (context) => const FinishRouteView(),
+        '/configuration': (context) => const AppConfigurationView(),
+      },
+      initialRoute: '/',
     );
   }
 }
@@ -139,6 +150,8 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  bool status = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -157,12 +170,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   await flutterTts.setLanguage('pt-BR');
                   await flutterTts.setPitch(2);
                   await flutterTts.speak(
-                    'Ande até o final do corredor, a sala da professora Lina fica a direita.',
+                    result,
                   );
                 }
               },
               child: const Text('open scan'),
-            )
+            ),
           ],
         ),
       ),
